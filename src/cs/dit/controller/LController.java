@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
+
+
 @WebServlet("*.do")
 public class LController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,19 +29,37 @@ public class LController extends HttpServlet {
 		switch (com.trim()){
 		case "list":
 			service = new OListService();
-			service.execute(request, response);//OListService로 갔다가 리스트로 다시 감
+			service.execute(request, response);//컨트롤러가 OListService로 갔다가 뷰(리스트)로 다시 감
 			viewPage = "/WEB-INF/view/list.jsp";
 			break;
 		case "insertForm":
 			service = new OListService();
-			service.execute(request, response);//OListService로 갔다가 리스트로 다시 감
+			service.execute(request, response);//OListService로 갔다가 뷰(insertForm)로 다시 감
 			viewPage = "/WEB-INF/view/insertForm.jsp";
 			break;
 		case "insert":
 			service = new OInsertService();
-			service.execute(request, response);//OInsertService로 갔다가 리스트로 다시 감
+			service.execute(request, response);//OInsertService로 갔다가 뷰(리스트)로 다시 감
 			viewPage = "/WEB-INF/view/list.do";
 			break;
+		case "update":
+			viewPage = "WEB-INF/view/insertForm.jsp";
+			break;
+		case "updateForm":
+			service = new OViewService();
+			service.execute(request, response);
+			viewPage = "WEB-INF/view/updateForm.jsp";
+			break;	
+		case "updateService":
+			service = new OUpdateService();
+			service.execute(request, response);
+			viewPage = "WEB-INF/view/list.do";
+			break;	
+		case "delete":
+			service = new ODeleteService();
+			service.execute(request, response);
+			viewPage = "WEB-INF/view/list.do";
+			break;	
 		case "index":
 			viewPage = "/WEB-INF/view/index.jsp";
 		}

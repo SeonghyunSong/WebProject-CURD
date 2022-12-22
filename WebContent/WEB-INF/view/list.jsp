@@ -30,8 +30,8 @@
 		</tr>
 		<c:forEach var='dto' items='${dtos}'>
 			<tr>
-				<td>${dto.num }</td>
-				<td>${dto.p_name}</td>
+				<td>${dto.num}</td>
+				<td><a href="updateForm.do?num=${dto.num}">${dto.p_name}</a></td> 
 				<td>${dto.quantity}</td>
 				<td>${dto.price}</td>
 				<td>${dto.price*dto.quantity}</td>				

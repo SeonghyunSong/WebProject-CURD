@@ -11,21 +11,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import cs.dit.dto.LoginDto;
-/**==============================================
- * 패키지명  cs.dit
- * 파일명 : LoginDao.java
- * 작성자 : 송성현
- * 변경이력 :
- *  2022-5-3/최초작성/송성현
- * 
- * 프로그램 설명:
- *     login 테이블과 연동하는 프로그램
- *     - insert(LoginDto)
- *     - list()
- * ============================================ */
+
 public class LoginDao {
    
-   //dbcp에서 커넥션 얻어오기
 	private Connection getConnection() throws Exception{
 	      
 	      Context initCtx = new InitialContext();
@@ -50,7 +38,6 @@ public class LoginDao {
 				pstmt.setInt(2,  dto.getQuantity());
 				pstmt.setInt(3,  dto.getPrice());
 				
-				//1. insert 문을 실행하는 코드를 작성하세요
 				pstmt.executeUpdate();
 				
 				
@@ -83,5 +70,73 @@ public class LoginDao {
 					e.printStackTrace();
 				}
 			return dtos;
+		}
+	   public void update(LoginDto dto) {
+			String sql = "UPDATE tbl_order SET p_name = ?, quantity = ?, price = ? WHERE num = ?";
+			
+			try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+			)
+			{
+				pstmt.setString(1,  dto.getP_name());
+				pstmt.setInt(2,  dto.getQuantity());
+				pstmt.setInt(3,  dto.getPrice());
+				pstmt.setInt(4, dto.getNum());
+				
+				pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+		}
+	   public LoginDto selectOne(int num) {
+			
+			//3. 전달받은 bcode를 가진 레코드를 검색하는 select 문을 아래에 작성하세요.
+			String sql = "SELECT * FROM tbl_order WHERE num = ?";
+			
+			// 생성자 안에 getter를 사용하지 않고 입력하기 위함.
+			LoginDto dto = new LoginDto();
+			
+			// try 안에 생성된 객체는 자동으로 해지하도록 한다.
+			try (	Connection con = getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					)
+			{	pstmt.setInt(1, num);
+			
+				try(ResultSet rs = pstmt.executeQuery();)
+				{
+					// 사용자가 원하는 방향으로 선택시작.
+					rs.next();
+					
+					dto.setNum(num);
+					dto.setP_name(rs.getString("P_name"));
+					dto.setQuantity(rs.getInt("Quantity"));
+					dto.setPrice(rs.getInt("Price"));
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dto;
+		}
+	   public void delete(int num) {
+			String sql = "DELETE FROM tbl_order WHERE num =?";
+			
+			try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+			)
+			{
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
 		}
 }
