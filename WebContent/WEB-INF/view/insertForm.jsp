@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>게시글 등록</title>
+	<title>제품 등록</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -13,18 +13,18 @@
 <body>
 	<div class="container">
 		<br>
-		<h2 class="text-center font-weight-bold">게시글 등록</h2>
+		<h2 class="text-center font-weight-bold">제품 등록</h2>
 		<hr/>
 		<form action="insert.do" method="post">
 		  <div class="form-group">
-	      <label for="p_name">p_name :</label>
+	      <label for="p_name">제품명 :</label>
 	      <input type="text" class="form-control" id="p_name" name="p_name">
 	    </div>
 	    <div class="form-group">
-	      <label for="quantity">quantity :</label><br>
+	      <label for="quantity">수량 :</label><br>
 			<input type="text" class="form-control" id="quantity" name="quantity">	    </div>
 	    <div class="form-group">
-	      <label for="price">price :</label>
+	      <label for="price">가격 :</label>
 	      <input type="text" class="form-control" id="price" name="price">
 	    </div>
 

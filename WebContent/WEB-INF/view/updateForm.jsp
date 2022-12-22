@@ -27,23 +27,23 @@
 		<input type="hidden" name="num" value="${dto.num}">
 		<table class="table table-striped table-hover">
 			<tr>
-				<th>num</th><td>${dto.num}</td>
-				<th>p_name</th><td><input type="text" value="${dto.p_name}" name="p_name"></td>
+				<th>번호</th><td>${dto.num}</td>
+				<th>제품명</th><td><input type="text" value="${dto.p_name}" name="p_name"></td>
 			</tr>
 			<tr>
-				<th>quantity</th>
+				<th>수량</th>
 				<td><input type="text" value="${dto.quantity}" name="quantity"></td>
 			</tr>
 			<tr>
-				<th>price</th>
+				<th>가격</th>
 				<td><input type="text" value="${dto.price}" name="price"></td>
 			</tr>
 			<tr>
 				<td colspan="4">
-					<input type="submit" value ="게시글 수정" >
-					<input type="button" value ="게시글 삭제" onclick ="location.href='delete.do?num=${dto.num}'">
-					<input type="button" value ="게시글 목록" onclick ="location.href='list.do'">
-					<input type="button" value ="게시글 등록" onclick ="location.href='insertForm.do'">
+					<input type="submit" value ="제품 수정" >
+					<input type="button" value ="제품 삭제" onclick ="location.href='delete.do?num=${dto.num}'">
+					<input type="button" value ="제품 목록" onclick ="location.href='list.do'">
+					<input type="button" value ="제품 등록" onclick ="location.href='insertForm.do'">
 				</td>
 			</tr>
 		</table><br><br>
